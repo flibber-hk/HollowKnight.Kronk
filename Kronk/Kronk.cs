@@ -5,6 +5,7 @@ using System.Text;
 using HutongGames.PlayMaker;
 using Modding;
 using Kronk.Randomizer;
+using System.Collections;
 
 namespace Kronk
 {
@@ -26,6 +27,7 @@ namespace Kronk
             instance = this;
 
             On.PlayMakerFSM.OnEnable += CountLevers;
+            On.BridgeLever.OpenBridge += CountBridgeLevers;
 
             LeverDisplay.Hook();
         }
@@ -47,7 +49,13 @@ namespace Kronk
                 LeverDisplay.UpdateText();
             }));
         }
+        private IEnumerator CountBridgeLevers(On.BridgeLever.orig_OpenBridge orig, BridgeLever self)
+        {
+            Settings.LeversHit += 1;
+            LeverDisplay.UpdateText();
 
+            return orig(self);
+        }
         public override string GetVersion()
         {
             return "0.1";

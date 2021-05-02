@@ -62,6 +62,7 @@ namespace Kronk
         {
             UnHook();
 
+            ModHooks.Instance.AfterSavegameLoadHook += OnLoad;
             On.QuitToMenu.Start += OnQuitToMenu;
             On.InvAnimateUpAndDown.AnimateUp += OnInventoryOpen;
             On.InvAnimateUpAndDown.AnimateDown += OnInventoryClose;
@@ -73,6 +74,7 @@ namespace Kronk
 
         internal static void UnHook()
         {
+            ModHooks.Instance.AfterSavegameLoadHook -= OnLoad;
             On.QuitToMenu.Start -= OnQuitToMenu;
             On.InvAnimateUpAndDown.AnimateUp -= OnInventoryOpen;
             On.InvAnimateUpAndDown.AnimateDown -= OnInventoryClose;
@@ -85,6 +87,11 @@ namespace Kronk
         private static void ShowLeverCount(Scene arg0, Scene arg1)
         {
             if (arg0.name == "Tutorial_01" && arg1.name == "Town") UpdateText();
+        }
+
+        private static void OnLoad(SaveGameData data)
+        {
+            UpdateText();
         }
 
         private static IEnumerator OnQuitToMenu(On.QuitToMenu.orig_Start orig, QuitToMenu self)
