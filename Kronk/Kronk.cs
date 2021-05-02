@@ -27,17 +27,7 @@ namespace Kronk
 
             On.PlayMakerFSM.OnEnable += CountLevers;
 
-            ModHooks.Instance.LanguageGetHook += ShowLeversInInventory;
-        }
-
-        private string ShowLeversInInventory(string key, string sheetTitle)
-        {
-            if (key == "INV_DESC_SPELL_FOCUS" && sheetTitle == "UI")
-            {
-                return $"Hit {Settings.LeversHit} Levers";
-            }
-
-            return Language.Language.GetInternal(key, sheetTitle);
+            LeverDisplay.Hook();
         }
 
         private void CountLevers(On.PlayMakerFSM.orig_OnEnable orig, PlayMakerFSM self)
@@ -51,7 +41,11 @@ namespace Kronk
             // Exclude Godhome orb from count
             if (self.gameObject.name == "gg_roof_lever") return;
 
-            self.GetState("Hit").AddFirstAction(new ExecuteLambda(() => Settings.LeversHit += 1));
+            self.GetState("Hit").AddFirstAction(new ExecuteLambda(() =>
+            {
+                Settings.LeversHit += 1;
+                LeverDisplay.UpdateText();
+            }));
         }
 
         public override string GetVersion()
