@@ -15,5 +15,11 @@ namespace Kronk
             set => SetInt(value);
         }
 
+        public bool MantisRewardsLever
+        {
+            get => GetBool(false);
+            set => SetBool(value);
+        }
+
     }
 }

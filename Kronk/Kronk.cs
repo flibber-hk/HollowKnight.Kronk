@@ -6,6 +6,7 @@ using HutongGames.PlayMaker;
 using Modding;
 using Kronk.Randomizer;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 namespace Kronk
 {
@@ -28,14 +29,16 @@ namespace Kronk
 
             On.PlayMakerFSM.OnEnable += CountLevers;
             On.BridgeLever.OpenBridge += CountBridgeLevers;
+            UnityEngine.SceneManagement.SceneManager.activeSceneChanged += CountMantisLever;
 
             LeverDisplay.Hook();
         }
 
+
         private void CountLevers(On.PlayMakerFSM.orig_OnEnable orig, PlayMakerFSM self)
         {
             orig(self);
-            if (self.FsmName != "Switch Control")
+            if (!(self.FsmName == "Switch Control" || self.FsmName == "toll switch"))
             {
                 return;
             }
@@ -43,22 +46,39 @@ namespace Kronk
             // Exclude Godhome orb from count
             if (self.gameObject.name == "gg_roof_lever") return;
 
-            self.GetState("Hit").AddFirstAction(new ExecuteLambda(() =>
+            if (self.GetState("Hit") is FsmState hitState)
             {
-                Settings.LeversHit += 1;
-                LeverDisplay.UpdateText();
-            }));
+                hitState.AddFirstAction(new ExecuteLambda(() =>
+                {
+                    instance.Settings.LeversHit += 1;
+                    LeverDisplay.UpdateText();
+                }));
+            }
         }
         private IEnumerator CountBridgeLevers(On.BridgeLever.orig_OpenBridge orig, BridgeLever self)
         {
-            Settings.LeversHit += 1;
+            instance.Settings.LeversHit += 1;
             LeverDisplay.UpdateText();
 
             return orig(self);
         }
+        private static void CountMantisLever(Scene arg0, Scene arg1)
+        {
+            if (!string.IsNullOrEmpty(arg0.name)
+                && GameManager.GetBaseSceneName(arg0.name) == "Fungus2_15"
+                && arg1.name == "Fungus2_31"
+                && !instance.Settings.MantisRewardsLever
+                && PlayerData.instance.defeatedMantisLords)
+            {
+                instance.Settings.MantisRewardsLever = true;
+                instance.Settings.LeversHit += 1;
+                LeverDisplay.UpdateText();
+            }
+        }
+
         public override string GetVersion()
         {
-            return "0.1";
+            return "0.2";
         }
 
     }
