@@ -12,6 +12,8 @@ namespace Kronk
 {
     public class Kronk : Mod
     {
+        internal const int NUMLEVERS = 63;
+
         internal static Kronk instance;
 
         public KronkSettings Settings = new KronkSettings();
