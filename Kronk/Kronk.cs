@@ -54,15 +54,13 @@ namespace Kronk
             {
                 hitState.AddFirstAction(new ExecuteLambda(() =>
                 {
-                    instance.Settings.LeversHit += 1;
-                    LeverDisplay.UpdateText();
+                    IncrementLeverCount();
                 }));
             }
         }
         private IEnumerator CountBridgeLevers(On.BridgeLever.orig_OpenBridge orig, BridgeLever self)
         {
-            instance.Settings.LeversHit += 1;
-            LeverDisplay.UpdateText();
+            IncrementLeverCount();
 
             return orig(self);
         }
@@ -75,9 +73,14 @@ namespace Kronk
                 && PlayerData.instance.defeatedMantisLords)
             {
                 instance.Settings.MantisRewardsLever = true;
-                instance.Settings.LeversHit += 1;
-                LeverDisplay.UpdateText();
+                IncrementLeverCount();
             }
+        }
+
+        private static void IncrementLeverCount()
+        {
+            instance.Settings.LeversHit += 1;
+            LeverDisplay.UpdateText();
         }
 
         public override string GetVersion()
