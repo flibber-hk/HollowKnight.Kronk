@@ -12,6 +12,8 @@ namespace Kronk
 {
     internal static class LeverDisplay
     {
+        internal const int NUMLEVERS = 63;
+
         private static GameObject canvas;
         private static GameObject canvasText;
 
@@ -43,6 +45,11 @@ namespace Kronk
             string leverOrLevers = "Lever" + (Kronk.instance.Settings.LeversHit == 1 ? "" : "s");
 
             canvasText.GetComponent<UnityEngine.UI.Text>().text = $"{Kronk.instance.Settings.LeversHit} {leverOrLevers}";
+
+            if (Kronk.instance.Settings.LeversHit >= NUMLEVERS)
+            {
+                canvasText.GetComponent<UnityEngine.UI.Text>().color = Color.yellow;
+            }
         }
 
 

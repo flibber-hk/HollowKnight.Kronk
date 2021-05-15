@@ -31,6 +31,8 @@ namespace Kronk
             On.BridgeLever.OpenBridge += CountBridgeLevers;
             UnityEngine.SceneManagement.SceneManager.activeSceneChanged += CountMantisLever;
 
+            CanvasUtil.CreateFonts();
+
             LeverDisplay.Hook();
         }
 
@@ -78,7 +80,7 @@ namespace Kronk
 
         public override string GetVersion()
         {
-            return "0.2";
+            return "0.2.1";
         }
 
     }
