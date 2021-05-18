@@ -104,7 +104,7 @@ namespace Kronk
 
         public override string GetVersion()
         {
-            return "0.2.1";
+            return "0.3s";
         }
 
     }
