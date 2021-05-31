@@ -10,7 +10,7 @@ using Object = UnityEngine.Object;
 
 namespace Kronk
 {
-    internal static class LeverDisplay
+    internal static class Display
     {
         private static GameObject canvas;
         private static GameObject canvasText;
@@ -22,7 +22,7 @@ namespace Kronk
             canvas = CanvasUtil.CreateCanvas(RenderMode.ScreenSpaceOverlay, new Vector2(1920, 1080));
             Object.DontDestroyOnLoad(canvas);
 
-            canvasText = CanvasUtil.CreateTextPanel(canvas, $"0 Levers", 24, TextAnchor.MiddleCenter,
+            canvasText = CanvasUtil.CreateTextPanel(canvas, $"0 hit", 24, TextAnchor.MiddleCenter,
                 new CanvasUtil.RectData(new Vector2(200, 100), Vector2.zero,
                 new Vector2(0.87f, 0.95f), new Vector2(0.87f, 0.95f)));
 
@@ -40,14 +40,31 @@ namespace Kronk
             if (canvas == null) Create();
             if (canvasText == null) return;
 
-            string leverOrLevers = "Lever" + (Kronk.instance.Settings.LeversHit == 1 ? "" : "s");
-
-            canvasText.GetComponent<UnityEngine.UI.Text>().text = $"{Kronk.instance.Settings.LeversHit} {leverOrLevers}";
-
-            if (Kronk.instance.Settings.LeversHit >= Kronk.NUMLEVERS)
+            switch (Kronk.instance.countingMode)
             {
-                canvasText.GetComponent<UnityEngine.UI.Text>().color = Color.yellow;
+                case Kronk.CountingMode.Levers:
+                    string leverOrLevers = "Lever" + (Kronk.instance.Settings.LeversHit == 1 ? "" : "s");
+
+                    canvasText.GetComponent<UnityEngine.UI.Text>().text = $"{Kronk.instance.Settings.LeversHit} {leverOrLevers}";
+
+                    if (Kronk.instance.Settings.LeversHit >= LeverCount.NUMLEVERS)
+                    {
+                        canvasText.GetComponent<UnityEngine.UI.Text>().color = Color.yellow;
+                    }
+                    break;
+
+                case Kronk.CountingMode.Rocks:
+                    string rockOrRocks = "Rock" + (Kronk.instance.Settings.RocksBroken == 1 ? "" : "s");
+
+                    canvasText.GetComponent<UnityEngine.UI.Text>().text = $"{Kronk.instance.Settings.RocksBroken} {rockOrRocks}";
+
+                    if (Kronk.instance.Settings.RocksBroken >= RockCount.NUMROCKS)
+                    {
+                        canvasText.GetComponent<UnityEngine.UI.Text>().color = Color.yellow;
+                    }
+                    break;
             }
+
         }
 
 

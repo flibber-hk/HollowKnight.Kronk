@@ -21,5 +21,11 @@ namespace Kronk
             set => SetBool(value);
         }
 
+        public int RocksBroken
+        {
+            get => GetInt(0);
+            set => SetInt(value);
+        }
+
     }
 }
