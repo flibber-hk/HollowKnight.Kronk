@@ -6,26 +6,20 @@ using Modding;
 
 namespace Kronk
 {
-    public class KronkSettings : ModSettings
+    public class KronkSettings
     {
+        #region Levers
+        public int LeversHit = 0;
+        public bool MantisRewardsLever = false;
+        #endregion
 
-        public int LeversHit
-        {
-            get => GetInt(0);
-            set => SetInt(value);
-        }
+        #region Rocks
+        public int RocksBroken = 0;
+        #endregion
+    }
 
-        public bool MantisRewardsLever
-        {
-            get => GetBool(false);
-            set => SetBool(value);
-        }
-
-        public int RocksBroken
-        {
-            get => GetInt(0);
-            set => SetInt(value);
-        }
-
+    public class GlobalSettings
+    {
+        public Kronk.CountingMode countingMode = Kronk.CountingMode.Levers;
     }
 }

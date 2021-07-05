@@ -30,10 +30,10 @@ namespace Kronk
 
         private static void IncrementRockCount()
         {
-            Kronk.instance.Settings.RocksBroken += 1;
+            Kronk.localSettings.RocksBroken += 1;
             Display.UpdateText();
 
-            if (Kronk.instance.Settings.RocksBroken == NUMROCKS && Kronk.instance.countingMode == Kronk.CountingMode.Rocks)
+            if (Kronk.localSettings.RocksBroken == NUMROCKS && Kronk.globalSettings.countingMode == Kronk.CountingMode.Rocks)
             {
                 Kronk.SendMessageToLivesplit();
             }

@@ -40,25 +40,25 @@ namespace Kronk
             if (canvas == null) Create();
             if (canvasText == null) return;
 
-            switch (Kronk.instance.countingMode)
+            switch (Kronk.globalSettings.countingMode)
             {
                 case Kronk.CountingMode.Levers:
-                    string leverOrLevers = "Lever" + (Kronk.instance.Settings.LeversHit == 1 ? "" : "s");
+                    string leverOrLevers = "Lever" + (Kronk.localSettings.LeversHit == 1 ? "" : "s");
 
-                    canvasText.GetComponent<UnityEngine.UI.Text>().text = $"{Kronk.instance.Settings.LeversHit} {leverOrLevers}";
+                    canvasText.GetComponent<UnityEngine.UI.Text>().text = $"{Kronk.localSettings.LeversHit} {leverOrLevers}";
 
-                    if (Kronk.instance.Settings.LeversHit >= LeverCount.NUMLEVERS)
+                    if (Kronk.localSettings.LeversHit >= LeverCount.NUMLEVERS)
                     {
                         canvasText.GetComponent<UnityEngine.UI.Text>().color = Color.yellow;
                     }
                     break;
 
                 case Kronk.CountingMode.Rocks:
-                    string rockOrRocks = "Rock" + (Kronk.instance.Settings.RocksBroken == 1 ? "" : "s");
+                    string rockOrRocks = "Rock" + (Kronk.localSettings.RocksBroken == 1 ? "" : "s");
 
-                    canvasText.GetComponent<UnityEngine.UI.Text>().text = $"{Kronk.instance.Settings.RocksBroken} {rockOrRocks}";
+                    canvasText.GetComponent<UnityEngine.UI.Text>().text = $"{Kronk.localSettings.RocksBroken} {rockOrRocks}";
 
-                    if (Kronk.instance.Settings.RocksBroken >= RockCount.NUMROCKS)
+                    if (Kronk.localSettings.RocksBroken >= RockCount.NUMROCKS)
                     {
                         canvasText.GetComponent<UnityEngine.UI.Text>().color = Color.yellow;
                     }
@@ -84,7 +84,7 @@ namespace Kronk
         {
             UnHook();
 
-            ModHooks.Instance.AfterSavegameLoadHook += OnLoad;
+            ModHooks.AfterSavegameLoadHook += OnLoad;
             On.QuitToMenu.Start += OnQuitToMenu;
             On.InvAnimateUpAndDown.AnimateUp += OnInventoryOpen;
             On.InvAnimateUpAndDown.AnimateDown += OnInventoryClose;
@@ -96,7 +96,7 @@ namespace Kronk
 
         internal static void UnHook()
         {
-            ModHooks.Instance.AfterSavegameLoadHook -= OnLoad;
+            ModHooks.AfterSavegameLoadHook -= OnLoad;
             On.QuitToMenu.Start -= OnQuitToMenu;
             On.InvAnimateUpAndDown.AnimateUp -= OnInventoryOpen;
             On.InvAnimateUpAndDown.AnimateDown -= OnInventoryClose;

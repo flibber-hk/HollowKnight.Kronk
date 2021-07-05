@@ -9,14 +9,14 @@ namespace Kronk.Randomizer
     {
         public static void AddState(this PlayMakerFSM self, FsmState state)
         {
-            Fsm fsm = ReflectionHelper.GetAttr<PlayMakerFSM, Fsm>(self, "fsm");
-            FsmState[] states = ReflectionHelper.GetAttr<Fsm, FsmState[]>(fsm, "states");
+            Fsm fsm = ReflectionHelper.GetField<PlayMakerFSM, Fsm>(self, "fsm");
+            FsmState[] states = ReflectionHelper.GetField<Fsm, FsmState[]>(fsm, "states");
 
             FsmState[] newStates = new FsmState[states.Length + 1];
             Array.Copy(states, newStates, states.Length);
             newStates[states.Length] = state;
 
-            ReflectionHelper.SetAttr(fsm, "states", newStates);
+            ReflectionHelper.SetField(fsm, "states", newStates);
         }
 
         public static FsmState GetState(this PlayMakerFSM self, string name)

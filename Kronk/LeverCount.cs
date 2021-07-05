@@ -51,20 +51,20 @@ namespace Kronk
             if (!string.IsNullOrEmpty(arg0.name)
                 && GameManager.GetBaseSceneName(arg0.name) == "Fungus2_15"
                 && arg1.name == "Fungus2_31"
-                && !Kronk.instance.Settings.MantisRewardsLever
+                && !Kronk.localSettings.MantisRewardsLever
                 && PlayerData.instance.defeatedMantisLords)
             {
-                Kronk.instance.Settings.MantisRewardsLever = true;
+                Kronk.localSettings.MantisRewardsLever = true;
                 IncrementLeverCount();
             }
         }
 
         private static void IncrementLeverCount()
         {
-            Kronk.instance.Settings.LeversHit += 1;
+            Kronk.localSettings.LeversHit += 1;
             Display.UpdateText();
 
-            if (Kronk.instance.Settings.LeversHit == NUMLEVERS && Kronk.instance.countingMode == Kronk.CountingMode.Levers)
+            if (Kronk.localSettings.LeversHit == NUMLEVERS && Kronk.globalSettings.countingMode == Kronk.CountingMode.Levers)
             {
                 Kronk.SendMessageToLivesplit();
             }

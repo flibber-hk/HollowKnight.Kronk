@@ -4,25 +4,45 @@ using System.Linq;
 using System.Text;
 using HutongGames.PlayMaker;
 using Modding;
-using Kronk.Randomizer;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
+
 namespace Kronk
 {
-    public class Kronk : Mod
+    public class Kronk : Mod, ILocalSettings<KronkSettings>, IGlobalSettings<GlobalSettings>, IMenuMod
     {
-
-
         internal static Kronk instance;
 
-        public KronkSettings Settings = new KronkSettings();
-        public override ModSettings SaveSettings 
+        public static KronkSettings localSettings { get; set; } = new KronkSettings();
+        public void OnLoadLocal(KronkSettings s) => localSettings = s;
+        public KronkSettings OnSaveLocal() => localSettings;
+
+        public static GlobalSettings globalSettings { get; set; } = new GlobalSettings();
+        public void OnLoadGlobal(GlobalSettings s) => globalSettings = s;
+        public GlobalSettings OnSaveGlobal() => globalSettings;
+
+        #region Menu
+        public List<IMenuMod.MenuEntry> GetMenuData(IMenuMod.MenuEntry? toggleButtonEntry)
         {
-            get => Settings;
-            set => Settings = (KronkSettings)value;
+            return new List<IMenuMod.MenuEntry>()
+            {
+                new IMenuMod.MenuEntry
+                {
+                    Name = "Counting:",
+                    Description = string.Empty,
+                    Values = Enum.GetNames(typeof(CountingMode)),
+                    Saver = opt => globalSettings.countingMode = (CountingMode)opt,
+                    Loader = () => (int)globalSettings.countingMode,
+                }
+            };
         }
+        public bool ToggleButtonInsideMenu => false;
+        #endregion
+
+
+
 
 
         // TODO: make this a separate global setting, ideally toggleable in-game
@@ -31,8 +51,6 @@ namespace Kronk
             Levers = 0,
             Rocks
         }
-        
-        public CountingMode countingMode;
 
 
         public override void Initialize()
@@ -45,8 +63,6 @@ namespace Kronk
             CanvasUtil.CreateFonts();
 
             Display.Hook();
-
-            countingMode = CountingMode.Rocks;
         }
 
 
