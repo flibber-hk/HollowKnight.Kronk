@@ -35,6 +35,15 @@ namespace Kronk
                     Values = Enum.GetNames(typeof(CountingMode)),
                     Saver = opt => globalSettings.countingMode = (CountingMode)opt,
                     Loader = () => (int)globalSettings.countingMode,
+                },
+
+                new IMenuMod.MenuEntry
+                {
+                    Name = "Counter Position:",
+                    Description = string.Empty,
+                    Values = Enum.GetNames(typeof(CounterPosition)),
+                    Saver = opt => globalSettings.counterPosition = (CounterPosition)opt,
+                    Loader = () => (int)globalSettings.counterPosition,
                 }
             };
         }
@@ -42,15 +51,6 @@ namespace Kronk
         #endregion
 
 
-
-
-
-        // TODO: make this a separate global setting, ideally toggleable in-game
-        public enum CountingMode
-        {
-            Levers = 0,
-            Rocks
-        }
 
 
         public override void Initialize()
@@ -84,7 +84,7 @@ namespace Kronk
 
         public override string GetVersion()
         {
-            return "0.3.1(Rocks)";
+            return "0.4";
         }
 
     }

@@ -20,6 +20,22 @@ namespace Kronk
 
     public class GlobalSettings
     {
-        public Kronk.CountingMode countingMode = Kronk.CountingMode.Levers;
+        public CountingMode countingMode = CountingMode.Levers;
+        public CounterPosition counterPosition = CounterPosition.TopRight;
+    }
+
+    public enum CountingMode
+    {
+        Levers = 0,
+        Rocks
+    }
+
+    public enum CounterPosition
+    {
+        TopRight = 0,
+        BottomLeft,
+        BottomRight,
+        AboveHUD,
+        BelowHUD
     }
 }

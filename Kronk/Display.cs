@@ -22,9 +22,32 @@ namespace Kronk
             canvas = CanvasUtil.CreateCanvas(RenderMode.ScreenSpaceOverlay, new Vector2(1920, 1080));
             Object.DontDestroyOnLoad(canvas);
 
+            Vector2 position;
+            switch (Kronk.globalSettings.counterPosition)
+            {
+                default:
+                case CounterPosition.TopRight:
+                    position = new Vector2(0.87f, 0.95f);
+                    break;
+
+                case CounterPosition.BottomLeft:
+                    position = new Vector2(0.13f, 0.05f);
+                    break;
+                case CounterPosition.BottomRight:
+                    position = new Vector2(0.87f, 0.05f);
+                    break;
+                case CounterPosition.AboveHUD:
+                    position = new Vector2(0.13f, 0.95f);
+                    break;
+                case CounterPosition.BelowHUD:
+                    position = new Vector2(0.13f, 0.75f);
+                    break;
+            }    
+
+
             canvasText = CanvasUtil.CreateTextPanel(canvas, $"0 hit", 24, TextAnchor.MiddleCenter,
                 new CanvasUtil.RectData(new Vector2(200, 100), Vector2.zero,
-                new Vector2(0.87f, 0.95f), new Vector2(0.87f, 0.95f)));
+                position, position));
 
             Show();
         }
@@ -42,7 +65,7 @@ namespace Kronk
 
             switch (Kronk.globalSettings.countingMode)
             {
-                case Kronk.CountingMode.Levers:
+                case CountingMode.Levers:
                     string leverOrLevers = "Lever" + (Kronk.localSettings.LeversHit == 1 ? "" : "s");
 
                     canvasText.GetComponent<UnityEngine.UI.Text>().text = $"{Kronk.localSettings.LeversHit} {leverOrLevers}";
@@ -53,7 +76,7 @@ namespace Kronk
                     }
                     break;
 
-                case Kronk.CountingMode.Rocks:
+                case CountingMode.Rocks:
                     string rockOrRocks = "Rock" + (Kronk.localSettings.RocksBroken == 1 ? "" : "s");
 
                     canvasText.GetComponent<UnityEngine.UI.Text>().text = $"{Kronk.localSettings.RocksBroken} {rockOrRocks}";
@@ -136,14 +159,14 @@ namespace Kronk
 
         private static IEnumerator OnPause(On.UIManager.orig_GoToPauseMenu orig, UIManager self)
         {
-            Hide();
+            Destroy();
             return orig(self);
         }
 
         private static void OnUnpause(On.UIManager.orig_UIClosePauseMenu orig, UIManager self)
         {
             orig(self);
-            Show();
+            UpdateText();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Kronk.Counters
         {
             On.PlayMakerFSM.OnEnable += CountRocks;
         }
-        private static bool IsActive => Kronk.globalSettings.countingMode == Kronk.CountingMode.Rocks;
+        private static bool IsActive => Kronk.globalSettings.countingMode == CountingMode.Rocks;
 
         private static void CountRocks(On.PlayMakerFSM.orig_OnEnable orig, PlayMakerFSM self)
         {
@@ -29,12 +29,12 @@ namespace Kronk.Counters
 
         private static void IncrementRockCount()
         {
-            Kronk.localSettings.LeversHit += 1;
+            Kronk.localSettings.RocksBroken += 1;
 
             if (IsActive)
             {
                 Display.UpdateText();
-                if (Kronk.localSettings.LeversHit == NUMOBJECTS)
+                if (Kronk.localSettings.RocksBroken == NUMOBJECTS)
                 {
                     Kronk.SendMessageToLivesplit();
                 }

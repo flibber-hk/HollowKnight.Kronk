@@ -18,7 +18,7 @@ namespace Kronk.Counters
             On.BridgeLever.OpenBridge += CountBridgeLevers;
             UnityEngine.SceneManagement.SceneManager.activeSceneChanged += CountMantisLever;
         }
-        private static bool IsActive => Kronk.globalSettings.countingMode == Kronk.CountingMode.Levers;
+        private static bool IsActive => Kronk.globalSettings.countingMode == CountingMode.Levers;
 
         private static void CountLevers(On.PlayMakerFSM.orig_OnEnable orig, PlayMakerFSM self)
         {
