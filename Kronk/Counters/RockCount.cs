@@ -4,17 +4,16 @@ using System.Linq;
 using System.Text;
 using Kronk.Randomizer;
 
-namespace Kronk
+namespace Kronk.Counters
 {
     public static class RockCount
     {
-        internal const int NUMROCKS = 207;
-
+        internal const int NUMOBJECTS = 207;
         public static void Hook()
         {
             On.PlayMakerFSM.OnEnable += CountRocks;
         }
-
+        private static bool IsActive => Kronk.globalSettings.countingMode == Kronk.CountingMode.Rocks;
 
         private static void CountRocks(On.PlayMakerFSM.orig_OnEnable orig, PlayMakerFSM self)
         {
@@ -30,12 +29,15 @@ namespace Kronk
 
         private static void IncrementRockCount()
         {
-            Kronk.localSettings.RocksBroken += 1;
-            Display.UpdateText();
+            Kronk.localSettings.LeversHit += 1;
 
-            if (Kronk.localSettings.RocksBroken == NUMROCKS && Kronk.globalSettings.countingMode == Kronk.CountingMode.Rocks)
+            if (IsActive)
             {
-                Kronk.SendMessageToLivesplit();
+                Display.UpdateText();
+                if (Kronk.localSettings.LeversHit == NUMOBJECTS)
+                {
+                    Kronk.SendMessageToLivesplit();
+                }
             }
         }
 

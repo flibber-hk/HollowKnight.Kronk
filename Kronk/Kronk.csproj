@@ -75,12 +75,12 @@
   <ItemGroup>
     <Compile Include="Kronk.cs" />
     <Compile Include="KronkSettings.cs" />
-    <Compile Include="LeverCount.cs" />
+    <Compile Include="Counters\LeverCount.cs" />
     <Compile Include="Display.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Randomizer\ExecuteLambda.cs" />
     <Compile Include="Randomizer\PlaymakerExtensions.cs" />
-    <Compile Include="RockCount.cs" />
+    <Compile Include="Counters\RockCount.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

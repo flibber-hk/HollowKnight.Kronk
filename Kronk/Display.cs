@@ -47,7 +47,7 @@ namespace Kronk
 
                     canvasText.GetComponent<UnityEngine.UI.Text>().text = $"{Kronk.localSettings.LeversHit} {leverOrLevers}";
 
-                    if (Kronk.localSettings.LeversHit >= LeverCount.NUMLEVERS)
+                    if (Kronk.localSettings.LeversHit >= Counters.LeverCount.NUMOBJECTS)
                     {
                         canvasText.GetComponent<UnityEngine.UI.Text>().color = Color.yellow;
                     }
@@ -58,7 +58,7 @@ namespace Kronk
 
                     canvasText.GetComponent<UnityEngine.UI.Text>().text = $"{Kronk.localSettings.RocksBroken} {rockOrRocks}";
 
-                    if (Kronk.localSettings.RocksBroken >= RockCount.NUMROCKS)
+                    if (Kronk.localSettings.RocksBroken >= Counters.RockCount.NUMOBJECTS)
                     {
                         canvasText.GetComponent<UnityEngine.UI.Text>().color = Color.yellow;
                     }

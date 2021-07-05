@@ -57,8 +57,8 @@ namespace Kronk
         {
             instance = this;
 
-            LeverCount.Hook();
-            RockCount.Hook();
+            Counters.LeverCount.Hook();
+            Counters.RockCount.Hook();
 
             CanvasUtil.CreateFonts();
 

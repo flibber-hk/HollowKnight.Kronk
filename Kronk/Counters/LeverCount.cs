@@ -7,19 +7,18 @@ using HutongGames.PlayMaker;
 using UnityEngine.SceneManagement;
 using Kronk.Randomizer;
 
-namespace Kronk
+namespace Kronk.Counters
 {
     public static class LeverCount
     {
-        internal const int NUMLEVERS = 63;
-
+        internal const int NUMOBJECTS = 63;
         public static void Hook()
         {
             On.PlayMakerFSM.OnEnable += CountLevers;
             On.BridgeLever.OpenBridge += CountBridgeLevers;
             UnityEngine.SceneManagement.SceneManager.activeSceneChanged += CountMantisLever;
         }
-
+        private static bool IsActive => Kronk.globalSettings.countingMode == Kronk.CountingMode.Levers;
 
         private static void CountLevers(On.PlayMakerFSM.orig_OnEnable orig, PlayMakerFSM self)
         {
@@ -62,11 +61,14 @@ namespace Kronk
         private static void IncrementLeverCount()
         {
             Kronk.localSettings.LeversHit += 1;
-            Display.UpdateText();
 
-            if (Kronk.localSettings.LeversHit == NUMLEVERS && Kronk.globalSettings.countingMode == Kronk.CountingMode.Levers)
+            if (IsActive)
             {
-                Kronk.SendMessageToLivesplit();
+                Display.UpdateText();
+                if (Kronk.localSettings.LeversHit == NUMOBJECTS)
+                {
+                    Kronk.SendMessageToLivesplit();
+                }
             }
         }
     }
