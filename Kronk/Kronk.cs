@@ -23,7 +23,12 @@ namespace Kronk
             get => Settings;
             set => Settings = (KronkSettings)value;
         }
-
+        public GlobalSettings globalSettings { get; set; } = new GlobalSettings();
+        public override ModSettings GlobalSettings
+        {
+            get => globalSettings = globalSettings ?? new GlobalSettings();
+            set => globalSettings = value is GlobalSettings gSettings ? gSettings : globalSettings;
+        }
 
         // TODO: make this a separate global setting, ideally toggleable in-game
         public enum CountingMode
@@ -46,7 +51,7 @@ namespace Kronk
 
             Display.Hook();
 
-            countingMode = CountingMode.Rocks;
+            countingMode = (CountingMode)instance.globalSettings.countingMode;
         }
 
 
@@ -68,7 +73,7 @@ namespace Kronk
 
         public override string GetVersion()
         {
-            return "0.3.1(Rocks)";
+            return "0.4(1.4.3.2)";
         }
 
     }

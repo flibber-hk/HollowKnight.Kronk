@@ -28,4 +28,18 @@ namespace Kronk
         }
 
     }
+
+    public class GlobalSettings : ModSettings
+    {
+        public int countingMode
+        {
+            get => GetInt(0);
+            set => SetInt(value);
+        }
+        public int counterPosition
+        {
+            get => GetInt(0);
+            set => SetInt(value);
+        }
+    }
 }

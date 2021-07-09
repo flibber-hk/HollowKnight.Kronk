@@ -22,9 +22,32 @@ namespace Kronk
             canvas = CanvasUtil.CreateCanvas(RenderMode.ScreenSpaceOverlay, new Vector2(1920, 1080));
             Object.DontDestroyOnLoad(canvas);
 
+            Vector2 position;
+            switch (Kronk.instance.globalSettings.counterPosition)
+            {
+                default:
+                case 0:
+                    position = new Vector2(0.87f, 0.95f);
+                    break;
+
+                case 1:
+                    position = new Vector2(0.13f, 0.05f);
+                    break;
+                case 2:
+                    position = new Vector2(0.87f, 0.05f);
+                    break;
+                case 3:
+                    position = new Vector2(0.13f, 0.95f);
+                    break;
+                case 4:
+                    position = new Vector2(0.13f, 0.75f);
+                    break;
+            }
+
+
             canvasText = CanvasUtil.CreateTextPanel(canvas, $"0 hit", 24, TextAnchor.MiddleCenter,
                 new CanvasUtil.RectData(new Vector2(200, 100), Vector2.zero,
-                new Vector2(0.87f, 0.95f), new Vector2(0.87f, 0.95f)));
+                position, position));
 
             Show();
         }
