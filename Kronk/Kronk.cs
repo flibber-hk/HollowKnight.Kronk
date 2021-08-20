@@ -68,8 +68,6 @@ namespace Kronk
             Counters.LeverCount.Hook();
             Counters.RockCount.Hook();
 
-            CanvasUtil.CreateFonts();
-
             Display.Hook();
         }
 
