@@ -20,6 +20,7 @@ namespace Kronk
 
     public class GlobalSettings
     {
+        public bool displayCounter = true;
         public CountingMode countingMode = CountingMode.Levers;
         public CounterPosition counterPosition = CounterPosition.TopRight;
     }

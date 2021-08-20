@@ -30,6 +30,14 @@ namespace Kronk
             {
                 new IMenuMod.MenuEntry
                 {
+                    Name = "Show Counter:",
+                    Description = string.Empty,
+                    Values = new string[]{ "True", "False" },
+                    Saver = opt => globalSettings.displayCounter = opt == 0,
+                    Loader = () => globalSettings.displayCounter ? 0 : 1,
+                },
+                new IMenuMod.MenuEntry
+                {
                     Name = "Counting:",
                     Description = string.Empty,
                     Values = Enum.GetNames(typeof(CountingMode)),

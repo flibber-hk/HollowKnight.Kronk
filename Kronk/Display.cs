@@ -94,7 +94,7 @@ namespace Kronk
         public static void Show()
         {
             if (canvas == null) return;
-            canvas.SetActive(true);
+            canvas.SetActive(Kronk.globalSettings.displayCounter);
         }
 
         public static void Hide()
