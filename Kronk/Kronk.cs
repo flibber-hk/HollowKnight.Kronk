@@ -63,6 +63,7 @@ namespace Kronk
 
         public override void Initialize()
         {
+            Log("Initializing...");
             instance = this;
 
             Counters.LeverCount.Hook();
@@ -90,7 +91,7 @@ namespace Kronk
 
         public override string GetVersion()
         {
-            return "0.4";
+            return "1.0";
         }
 
     }

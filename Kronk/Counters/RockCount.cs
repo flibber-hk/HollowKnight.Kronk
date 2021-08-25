@@ -11,6 +11,7 @@ namespace Kronk.Counters
         internal const int NUMOBJECTS = 207;
         public static void Hook()
         {
+            Kronk.instance.Log("Hooking Rock Count...");
             On.PlayMakerFSM.OnEnable += CountRocks;
         }
         private static bool IsActive => Kronk.globalSettings.countingMode == CountingMode.Rocks;

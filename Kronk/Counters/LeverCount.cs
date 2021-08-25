@@ -14,6 +14,7 @@ namespace Kronk.Counters
         internal const int NUMOBJECTS = 63;
         public static void Hook()
         {
+            Kronk.instance.Log("Hooking Lever Count...");
             On.PlayMakerFSM.OnEnable += CountLevers;
             On.BridgeLever.OpenBridge += CountBridgeLevers;
             UnityEngine.SceneManagement.SceneManager.activeSceneChanged += CountMantisLever;

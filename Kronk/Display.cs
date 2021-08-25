@@ -105,7 +105,7 @@ namespace Kronk
 
         internal static void Hook()
         {
-            UnHook();
+            Kronk.instance.Log("Hooking Display...");
 
             ModHooks.AfterSavegameLoadHook += OnLoad;
             On.QuitToMenu.Start += OnQuitToMenu;
@@ -115,18 +115,6 @@ namespace Kronk
             On.UIManager.UIClosePauseMenu += OnUnpause;
 
             UnityEngine.SceneManagement.SceneManager.activeSceneChanged += ShowLeverCount;
-        }
-
-        internal static void UnHook()
-        {
-            ModHooks.AfterSavegameLoadHook -= OnLoad;
-            On.QuitToMenu.Start -= OnQuitToMenu;
-            On.InvAnimateUpAndDown.AnimateUp -= OnInventoryOpen;
-            On.InvAnimateUpAndDown.AnimateDown -= OnInventoryClose;
-            On.UIManager.GoToPauseMenu -= OnPause;
-            On.UIManager.UIClosePauseMenu -= OnUnpause;
-
-            UnityEngine.SceneManagement.SceneManager.activeSceneChanged -= ShowLeverCount;
         }
 
         private static void ShowLeverCount(Scene arg0, Scene arg1)
