@@ -3,7 +3,7 @@ using System.Linq;
 using HutongGames.PlayMaker;
 using Modding;
 
-namespace Kronk.Randomizer
+namespace Kronk.Util
 {
     public static class PlayMakerExtensions
     {

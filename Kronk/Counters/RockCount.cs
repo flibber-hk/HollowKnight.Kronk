@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Kronk.Randomizer;
+using Kronk.Util;
 
 namespace Kronk.Counters
 {

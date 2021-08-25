@@ -1,7 +1,7 @@
 ﻿using System;
 using HutongGames.PlayMaker;
 
-namespace Kronk.Randomizer
+namespace Kronk.Util
 {
     internal class ExecuteLambda : FsmStateAction
     {

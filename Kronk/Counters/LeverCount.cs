@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using HutongGames.PlayMaker;
 using UnityEngine.SceneManagement;
-using Kronk.Randomizer;
+using Kronk.Util;
 
 namespace Kronk.Counters
 {
