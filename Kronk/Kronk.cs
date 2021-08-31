@@ -68,6 +68,7 @@ namespace Kronk
 
             Counters.LeverCount.Hook();
             Counters.RockCount.Hook();
+            Counters.TotemCount.Hook();
 
             Display.Hook();
         }

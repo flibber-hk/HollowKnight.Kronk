@@ -73,6 +73,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Counters\TotemCount.cs" />
     <Compile Include="Kronk.cs" />
     <Compile Include="KronkSettings.cs" />
     <Compile Include="Counters\LeverCount.cs" />

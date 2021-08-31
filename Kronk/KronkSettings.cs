@@ -16,6 +16,11 @@ namespace Kronk
         #region Rocks
         public int RocksBroken = 0;
         #endregion
+
+        #region Totems
+        public HashSet<(string, string)> TotemsHit = new HashSet<(string, string)>();
+        public int TotemCount => TotemsHit.Count();
+        #endregion
     }
 
     public class GlobalSettings
@@ -28,7 +33,8 @@ namespace Kronk
     public enum CountingMode
     {
         Levers = 0,
-        Rocks
+        Rocks,
+        Totems
     }
 
     public enum CounterPosition

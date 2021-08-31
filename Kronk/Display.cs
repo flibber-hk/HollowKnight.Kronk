@@ -86,6 +86,17 @@ namespace Kronk
                         canvasText.GetComponent<UnityEngine.UI.Text>().color = Color.yellow;
                     }
                     break;
+
+                case CountingMode.Totems:
+                    string totemOrTotems = "Totem" + (Kronk.localSettings.TotemCount == 1 ? "" : "s");
+
+                    canvasText.GetComponent<UnityEngine.UI.Text>().text = $"{Kronk.localSettings.TotemCount} {totemOrTotems}";
+
+                    if (Kronk.localSettings.TotemCount >= Counters.TotemCount.NUMOBJECTS)
+                    {
+                        canvasText.GetComponent<UnityEngine.UI.Text>().color = Color.yellow;
+                    }
+                    break;
             }
 
         }
