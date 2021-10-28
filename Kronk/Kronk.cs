@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HutongGames.PlayMaker;
 using Modding;
 using System.Collections;
-using UnityEngine.SceneManagement;
 using UnityEngine;
 
 
@@ -92,7 +88,7 @@ namespace Kronk
 
         public override string GetVersion()
         {
-            return "1.0";
+            return "1.1";
         }
 
     }
