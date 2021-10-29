@@ -12,6 +12,9 @@ namespace Kronk
 
         #region Rocks
         public int RocksBroken = 0;
+
+        // Scene name, Object name, Has parent
+        public HashSet<(string, string, bool)> DupableRocksBroken = new HashSet<(string, string, bool)>();
         #endregion
 
         #region Totems
