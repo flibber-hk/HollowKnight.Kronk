@@ -1,8 +1,8 @@
 # HollowKnight.Kronk
 
-Simple counter usable for speedruns. Currently supports Levers (for Kronk% speedrun) and Rocks (for All Geo Rocks), but more can be added easily.
+Simple counter usable for speedruns. Currently supports Levers (for Kronk% speedrun), Rocks (for All Geo Rocks), and Totems (for All Soul Totems) but more can be added easily.
 
-The mod will set the Hunter's Mark player data bool when you finish the run (63 levers / 207 rocks), so you can add the HuntersMark autosplit to automatically end the run.
+The mod will set the Hunter's Mark player data bool when you finish the run (63 levers / 207 rocks / 59 totems), so you can add the HuntersMark autosplit to automatically end the run.
 
 The counter will not appear when starting a file until you leave King's Pass, or increment the counter (so for example the rock counter will appear when you break the first KP rock, but the lever counter will not appear until leaving King's Pass).
 
