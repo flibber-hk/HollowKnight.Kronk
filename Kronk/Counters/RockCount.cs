@@ -8,16 +8,15 @@ namespace Kronk.Counters
         public static void Hook()
         {
             Kronk.instance.Log("Hooking Rock Count...");
-            On.PlayMakerFSM.OnEnable += CountRocks;
+            Hooks.OnFsmEnable += CountRocks;
         }
         private static bool IsActive => Kronk.globalSettings.countingMode == CountingMode.Rocks;
 
-        private static void CountRocks(On.PlayMakerFSM.orig_OnEnable orig, PlayMakerFSM self)
+        private static void CountRocks(PlayMakerFSM fsm)
         {
-            orig(self);
-            if (self.FsmName != "Geo Rock") return;
+            if (fsm.FsmName != "Geo Rock") return;
 
-            self.GetState("Destroy").AddFirstAction(new ExecuteLambda(() =>
+            fsm.GetState("Destroy").AddFirstAction(new ExecuteLambda(() =>
             {
                 IncrementRockCount();
             }));

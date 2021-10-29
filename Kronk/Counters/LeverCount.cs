@@ -11,24 +11,23 @@ namespace Kronk.Counters
         public static void Hook()
         {
             Kronk.instance.Log("Hooking Lever Count...");
-            On.PlayMakerFSM.OnEnable += CountLevers;
+            Hooks.OnFsmEnable += CountLevers;
             On.BridgeLever.OpenBridge += CountBridgeLevers;
             UnityEngine.SceneManagement.SceneManager.activeSceneChanged += CountMantisLever;
         }
         private static bool IsActive => Kronk.globalSettings.countingMode == CountingMode.Levers;
 
-        private static void CountLevers(On.PlayMakerFSM.orig_OnEnable orig, PlayMakerFSM self)
+        private static void CountLevers(PlayMakerFSM fsm)
         {
-            orig(self);
-            if (!(self.FsmName == "Switch Control" || self.FsmName == "toll switch"))
+            if (!(fsm.FsmName == "Switch Control" || fsm.FsmName == "toll switch"))
             {
                 return;
             }
 
             // Exclude Godhome orb from count
-            if (self.gameObject.name == "gg_roof_lever") return;
+            if (fsm.gameObject.name == "gg_roof_lever") return;
 
-            if (self.GetState("Hit") is FsmState hitState)
+            if (fsm.GetState("Hit") is FsmState hitState)
             {
                 hitState.AddFirstAction(new ExecuteLambda(() =>
                 {

@@ -80,6 +80,7 @@
     <Compile Include="Display.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\ExecuteLambda.cs" />
+    <Compile Include="Util\Hooks.cs" />
     <Compile Include="Util\PlaymakerExtensions.cs" />
     <Compile Include="Counters\RockCount.cs" />
   </ItemGroup>

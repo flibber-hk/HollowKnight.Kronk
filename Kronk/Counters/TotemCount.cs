@@ -9,18 +9,17 @@ namespace Kronk.Counters
         public static void Hook()
         {
             Kronk.instance.Log("Hooking Totem Count...");
-            On.PlayMakerFSM.OnEnable += CountTotems;
+            Hooks.OnFsmEnable += CountTotems;
         }
         private static bool IsActive => Kronk.globalSettings.countingMode == CountingMode.Totems;
 
-        private static void CountTotems(On.PlayMakerFSM.orig_OnEnable orig, PlayMakerFSM self)
+        private static void CountTotems(PlayMakerFSM fsm)
         {
-            orig(self);
+            if (fsm.FsmName != "soul_totem") return;
 
-            if (self.FsmName != "soul_totem") return;
-
-            self.GetState("Hit").AddFirstAction(new ExecuteLambda(() => IncrementTotemCount(self.gameObject.name, self.gameObject.scene.name)));
+            fsm.GetState("Hit").AddFirstAction(new ExecuteLambda(() => IncrementTotemCount(fsm.gameObject.name, fsm.gameObject.scene.name)));
         }
+
         private static void IncrementTotemCount(string gameObject, string scene)
         {
             (string, string) key = (gameObject, scene);
