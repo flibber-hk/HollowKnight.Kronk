@@ -4,8 +4,6 @@ Simple counter usable for speedruns. Currently supports Levers (for Kronk% speed
 
 The mod will set the Hunter's Mark player data bool when you finish the run (63 levers / 207 rocks / 59 totems), so you can add the HuntersMark autosplit to automatically end the run.
 
-The counter will not appear when starting a file until you leave King's Pass, or increment the counter (so for example the rock counter will appear when you break the first KP rock, but the lever counter will not appear until leaving King's Pass).
-
 ## Menu
 
 The following settings can be toggled from the in-game mod menu (settings -> options -> mods)
