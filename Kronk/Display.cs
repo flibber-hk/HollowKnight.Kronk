@@ -118,15 +118,15 @@ namespace Kronk
             On.QuitToMenu.Start += OnQuitToMenu;
             On.InvAnimateUpAndDown.AnimateUp += OnInventoryOpen;
             On.InvAnimateUpAndDown.AnimateDown += OnInventoryClose;
-            On.UIManager.GoToPauseMenu += OnPause;
+            On.UIManager.UIGoToPauseMenu += OnPause;
             On.UIManager.UIClosePauseMenu += OnUnpause;
 
             UnityEngine.SceneManagement.SceneManager.activeSceneChanged += ShowLeverCount;
         }
 
-        private static void ShowLeverCount(Scene arg0, Scene arg1)
+        private static void ShowLeverCount(Scene _, Scene newScene)
         {
-            if (arg0.name == "Tutorial_01" && arg1.name == "Town") UpdateText();
+            if (newScene.name == "Tutorial_01" || newScene.name == "Town" || newScene.name == "GG_Atrium") UpdateText();
         }
 
         private static void OnLoad(SaveGameData data)
@@ -152,10 +152,10 @@ namespace Kronk
             Show();
         }
 
-        private static IEnumerator OnPause(On.UIManager.orig_GoToPauseMenu orig, UIManager self)
+        private static void OnPause(On.UIManager.orig_UIGoToPauseMenu orig, UIManager self)
         {
             Destroy();
-            return orig(self);
+            orig(self);
         }
 
         private static void OnUnpause(On.UIManager.orig_UIClosePauseMenu orig, UIManager self)
