@@ -65,6 +65,7 @@ namespace Kronk
             Counters.LeverCount.Hook();
             Counters.RockCount.Hook();
             Counters.TotemCount.Hook();
+            Counters.CompletionCount.Hook();
 
             Display.Hook();
         }
@@ -88,7 +89,7 @@ namespace Kronk
 
         public override string GetVersion()
         {
-            return "1.2";
+            return "1.3.1";
         }
 
     }
