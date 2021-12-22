@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
 namespace Kronk.Counters
 {
     public static class CompletionCount
@@ -11,30 +10,18 @@ namespace Kronk.Counters
 
         public static void Hook()
         {
-            On.HeroController.FixedUpdate += CountPercentage;
-            UnityEngine.SceneManagement.SceneManager.activeSceneChanged += Show_Compltio_Without_DreamNail;
-            
-
+            Kronk.instance.Log("Hooking Completion Count...");
+            On.PlayerData.SetBool += CountCompletion;
         }
 
-        private static void Show_Compltio_Without_DreamNail(Scene arg0, Scene arg1)
+        private static void CountCompletion(On.PlayerData.orig_SetBool orig, PlayerData self, string boolName, bool value)
         {
-            if (arg1.name == "Cinematic_Ending_A")
+            orig(self, boolName, value);
+            if (Kronk.globalSettings.countingMode == CountingMode.Completion)
             {
-                UnityEngine.SceneManagement.SceneManager.LoadScene("Cinematic_Ending_B");
+                GameManager.instance.CountGameCompletion();
+                Display.UpdateText();
             }
-        }
-
-        private static void CountPercentage(On.HeroController.orig_FixedUpdate orig, HeroController self)
-        {
-            orig(self);
-            GameManager.instance.CountGameCompletion();
-            float completion = GameManager.instance.GetPlayerDataFloat("completionPercentage");
-            if (completion == Kronk.localSettings.completionCount) return;
-            Kronk.localSettings.completionCount = completion;
-            Display.UpdateText();
-
-
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Kronk
         #endregion
 
         #region Completion
-        public float completionCount = 0;
+        //public float completionCount = 0;
         #endregion
     }
 

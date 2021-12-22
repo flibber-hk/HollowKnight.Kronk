@@ -89,7 +89,7 @@ namespace Kronk
 
         public override string GetVersion()
         {
-            return "1.3.1";
+            return "1.3.2";
         }
 
     }

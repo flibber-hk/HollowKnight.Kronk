@@ -95,7 +95,7 @@ namespace Kronk
                     break;
                 case CountingMode.Completion:
 
-                    canvasText.GetComponent<UnityEngine.UI.Text>().text = $"Completion: {Kronk.localSettings.completionCount}%";
+                    canvasText.GetComponent<UnityEngine.UI.Text>().text = $"Completion: {GameManager.instance.GetPlayerDataFloat("completionPercentage")}%";
 
 
                     break;
