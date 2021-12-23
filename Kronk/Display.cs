@@ -93,6 +93,12 @@ namespace Kronk
                         canvasText.GetComponent<UnityEngine.UI.Text>().color = Color.yellow;
                     }
                     break;
+                case CountingMode.Completion:
+
+                    canvasText.GetComponent<UnityEngine.UI.Text>().text = $"Completion: {GameManager.instance.GetPlayerDataFloat("completionPercentage")}%";
+
+
+                    break;
             }
 
         }
