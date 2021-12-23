@@ -21,10 +21,6 @@ namespace Kronk
         public HashSet<(string, string)> TotemsHit = new HashSet<(string, string)>();
         public int TotemCount => TotemsHit.Count();
         #endregion
-
-        #region Completion
-        //public float completionCount = 0;
-        #endregion
     }
 
     public class GlobalSettings
