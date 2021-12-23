@@ -3,6 +3,12 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Output zip
+Kronk.zip
+
+# LocalBuildProperties file
+LocalBuildProperties.props
+
 # User-specific files
 *.suo
 *.user
@@ -327,7 +333,3 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
-
-RandomizerMod3.0/RandomizerMod3.0.csproj
-
-scripts/
