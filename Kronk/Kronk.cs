@@ -68,6 +68,11 @@ namespace Kronk
             Counters.CompletionCount.Hook();
 
             Display.Hook();
+
+            if (ModHooks.GetMod("FStatsMod") is not null)
+            {
+                Interop.FStatsInterop.HookFStats();
+            }
         }
 
 
