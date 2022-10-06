@@ -17,6 +17,7 @@ namespace Kronk.Util
             actions[0] = action;
 
             self.Actions = actions;
+            action.Init(self);
         }
     }
 }
