@@ -43,9 +43,7 @@ namespace Kronk.Counters
         }
         private static void CountMantisLever(Scene arg0, Scene arg1)
         {
-            if (!string.IsNullOrEmpty(arg0.name)
-                && GameManager.GetBaseSceneName(arg0.name) == "Fungus2_15"
-                && arg1.name == "Fungus2_31"
+            if (arg1.name == "Fungus2_31"
                 && !Kronk.localSettings.MantisRewardsLever
                 && PlayerData.instance.defeatedMantisLords)
             {
