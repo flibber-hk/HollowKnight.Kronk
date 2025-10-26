@@ -92,10 +92,6 @@ namespace Kronk
             GameManager.instance.StartCoroutine(toggleMark());
         }
 
-        public override string GetVersion()
-        {
-            return "1.3.2";
-        }
-
+        public override string GetVersion() => GetType().Assembly.GetName().Version.ToString();
     }
 }
