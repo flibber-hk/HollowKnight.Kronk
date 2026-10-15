@@ -4,6 +4,8 @@ Simple counter usable for speedruns. Currently supports Levers (for Kronk% speed
 
 The mod will set the Hunter's Mark player data bool when you finish the run (63 levers / 207 rocks / 59 totems), so you can add the HuntersMark autosplit to automatically end the run.
 
+Moreover, it will set ghostCoins (an unused int in the game code) to the current number of items obtained, so that LiveSplit can catch individual events (not only the final split, that is still HuntersMark)
+
 ## Menu
 
 The following settings can be toggled from the in-game mod menu (settings -> options -> mods)

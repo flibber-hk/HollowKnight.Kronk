@@ -4,15 +4,15 @@
     <TargetFramework>net472</TargetFramework>
     <RootNamespace>Kronk</RootNamespace>
     <AssemblyTitle>Kronk</AssemblyTitle>
-	  <AssemblyVersion>1.4.0.1</AssemblyVersion>
+	  <AssemblyVersion>1.5.1.0</AssemblyVersion>
     <Deterministic>true</Deterministic>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   
   <PropertyGroup>
-    <HollowKnightRefs>..\API</HollowKnightRefs>
-    <ExportDir>bin\Publish</ExportDir>
+	<HollowKnightRefs>../API</HollowKnightRefs>
+	<ExportDir>../../Exports/</ExportDir>
   </PropertyGroup>
 
   <!--Gitignored local build properties file to modify the HollowKnightRefs value without needing to change anything in the remote.-->

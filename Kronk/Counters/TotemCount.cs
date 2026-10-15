@@ -6,6 +6,8 @@ namespace Kronk.Counters
     {
         internal const int NUMOBJECTS = 59;
 
+        private static readonly CounterUpdate updateHelper = new CounterUpdate(NUMOBJECTS);
+
         public static void Hook()
         {
             Kronk.instance.Log("Hooking Totem Count...");
@@ -29,11 +31,7 @@ namespace Kronk.Counters
 
             if (IsActive)
             {
-                Display.UpdateText();
-                if (Kronk.localSettings.TotemCount == NUMOBJECTS)
-                {
-                    Kronk.SendMessageToLivesplit();
-                }
+                updateHelper.CounterUpdated(Kronk.localSettings.TotemCount);
             }
         }
     }

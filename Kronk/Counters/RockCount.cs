@@ -8,11 +8,15 @@ namespace Kronk.Counters
         public static readonly HashSet<string> BadScenes = new HashSet<string>() { "Crossroads_ShamanTemple", "Abyss_06_Core" };
 
         internal const int NUMOBJECTS = 207;
+
+        private static readonly CounterUpdate updateHelper = new CounterUpdate(NUMOBJECTS);
+
         public static void Hook()
         {
             Kronk.instance.Log("Hooking Rock Count...");
             Hooks.OnFsmEnable += CountRocks;
         }
+
         private static bool IsActive => Kronk.globalSettings.countingMode == CountingMode.Rocks;
 
         private static void CountRocks(PlayMakerFSM fsm)
@@ -38,11 +42,7 @@ namespace Kronk.Counters
 
             if (IsActive)
             {
-                Display.UpdateText();
-                if (Kronk.localSettings.RocksBroken == NUMOBJECTS)
-                {
-                    Kronk.SendMessageToLivesplit();
-                }
+                updateHelper.CounterUpdated(Kronk.localSettings.RocksBroken);
             }
         }
 
